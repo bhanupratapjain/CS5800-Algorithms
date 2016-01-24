@@ -5,7 +5,7 @@ package homework01;
  */
 public class YShapedSinleLinkedList {
 
-    // Two Heads the Y shaped Linked List
+    // Two Heads of the Y shaped Linked List
     Node headA;
     Node headB;
 
