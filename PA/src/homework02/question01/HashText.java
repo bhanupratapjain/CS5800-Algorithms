@@ -2,9 +2,7 @@ package homework02.question01;
 
 import org.apache.commons.lang3.StringUtils;
 
-import java.io.BufferedReader;
-import java.io.FileReader;
-import java.io.IOException;
+import java.io.*;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -36,8 +34,8 @@ public class HashText {
         System.out.println(hashTable.listAllKeys());
     }
 
-    public void hashTextFile(String fileLoaction) {
-        try (BufferedReader br = new BufferedReader(new FileReader(fileLoaction))) {
+    public void hashTextFile(String loaction, String fileLoaction) {
+        try (BufferedReader br = new BufferedReader(new FileReader(loaction))) {
             String sCurrentLine = null;
             List<String> stringList = new ArrayList<String>();
             while ((sCurrentLine = br.readLine()) != null) {
@@ -56,11 +54,35 @@ public class HashText {
 
                 }
             }
-            System.out.println(hashTable.listAllKeys());
+            String hashingOutput = hashTable.listAllKeys();
+            System.out.println(hashingOutput);
+            createOutputFile(hashingOutput,fileLoaction);
         } catch (IOException e) {
             e.printStackTrace();
         }
 
+    }
+
+    public void createOutputFile(String content, String fileLoaction) {
+
+        System.out.println("Creating OutputFile");
+        File file = new File(fileLoaction+"test_out"+System.currentTimeMillis()+".txt");
+        try (FileOutputStream fop = new FileOutputStream(file)) {
+
+            // if file doesn't exists, then create it
+            if (!file.exists()) {
+                file.createNewFile();
+            }
+            // get the content in bytes
+            byte[] contentInBytes = content.getBytes();
+
+            fop.write(contentInBytes);
+            fop.flush();
+            fop.close();
+            System.out.println("Done");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     public int getPrime(int number) {
@@ -89,6 +111,10 @@ public class HashText {
     public static void main(String[] args) {
         HashText ht = new HashText();
         //ht.test();
-        ht.hashTextFile("C:\\Users\\Bhanu\\IdeaProjects\\CS5800-Algorithms\\PA\\src\\homework02\\question01\\test.txt");
+        String inputFile = "C:\\Users\\Bhanu\\IdeaProjects\\CS5800-Algorithms\\PA\\" +
+                "src\\homework02\\question01\\input\\test_input.txt";
+        String outputFileLocation = "C:\\Users\\Bhanu\\IdeaProjects\\CS5800-Algorithms\\PA\\" +
+                "src\\homework02\\question01\\output\\";
+        ht.hashTextFile(inputFile, outputFileLocation);
     }
 }
