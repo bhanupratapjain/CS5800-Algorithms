@@ -12,6 +12,9 @@ import java.util.List;
  */
 public class HashText {
 
+    /**
+     * Test.
+     */
     public void test() {
         WordHashTable hashTable = new WordHashTable(11);
         hashTable.insert("abc", 1);
@@ -34,6 +37,12 @@ public class HashText {
         System.out.println(hashTable.listAllKeys());
     }
 
+    /**
+     * Hash text file.
+     *
+     * @param loaction     the loaction
+     * @param fileLoaction the file loaction
+     */
     public void hashTextFile(String loaction, String fileLoaction) {
         try (BufferedReader br = new BufferedReader(new FileReader(loaction))) {
             String sCurrentLine = null;
@@ -63,10 +72,16 @@ public class HashText {
 
     }
 
+    /**
+     * Create output file.
+     *
+     * @param content      the content
+     * @param fileLoaction the file loaction
+     */
     public void createOutputFile(String content, String fileLoaction) {
 
         System.out.println("Creating OutputFile");
-        File file = new File(fileLoaction+"test_out"+System.currentTimeMillis()+".txt");
+        File file = new File(fileLoaction+"test_out_"+System.currentTimeMillis()+".txt");
         try (FileOutputStream fop = new FileOutputStream(file)) {
 
             // if file doesn't exists, then create it
@@ -85,6 +100,12 @@ public class HashText {
         }
     }
 
+    /**
+     * Gets prime.
+     *
+     * @param number the number
+     * @return prime prime
+     */
     public int getPrime(int number) {
         System.out.println("Current Size: " + number);
         while (true) {
@@ -96,7 +117,13 @@ public class HashText {
         }
     }
 
-    /*checks whether an int is prime or not*/
+    /**
+     * Is prime boolean.
+     *
+     * @param n the n
+     * @return the boolean
+     */
+/*checks whether an int is prime or not*/
     public boolean isPrime(int n) {
         //check if n is a multiple of 2
         if (n % 2 == 0) return false;
@@ -108,6 +135,11 @@ public class HashText {
         return true;
     }
 
+    /**
+     * The entry point of application.
+     *
+     * @param args the input arguments
+     */
     public static void main(String[] args) {
         HashText ht = new HashText();
         //ht.test();

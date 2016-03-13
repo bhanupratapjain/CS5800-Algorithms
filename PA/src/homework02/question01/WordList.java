@@ -13,14 +13,22 @@ public class WordList {
     private int size;
 
 
-    /*Using Sentinel to Have an Empty Node as Header.
+    /**
+     * Instantiates a new Word list.
+     */
+/*Using Sentinel to Have an Empty Node as Header.
     * Initially the WordList will be empty and the head will point to the last Node.*/
     public WordList() {
         this.head = new Word();
         this.tail = head;
     }
 
-    /*This will insertOrUpdate at the beginning of the WordList after the head*/
+    /**
+     * Insert at start.
+     *
+     * @param word the word
+     */
+/*This will insertOrUpdate at the beginning of the WordList after the head*/
     public void insertAtStart(Word word) {
         if (size == 0) {
             head.next = word;
@@ -33,7 +41,12 @@ public class WordList {
         }
     }
 
-    /*This will insertOrUpdate at the last of the worldList*/
+    /**
+     * Insert at end.
+     *
+     * @param word the word
+     */
+/*This will insertOrUpdate at the last of the worldList*/
     public void insertAtEnd(Word word) {
         if (size == 0) {
             head.next = word;
@@ -46,6 +59,11 @@ public class WordList {
         }
     }
 
+    /**
+     * Remove from start.
+     *
+     * @param key the key
+     */
     public void removeFromStart(String key) {
 
         if (size > 0) {
@@ -54,7 +72,12 @@ public class WordList {
         }
     }
 
-    /*This will check if the given word is already in the list*/
+    /**
+     * Insert or update.
+     *
+     * @param word the word
+     */
+/*This will check if the given word is already in the list*/
     public void insertOrUpdate(Word word) {
         if (size == 0) {
             insertAtStart(word);
@@ -70,7 +93,14 @@ public class WordList {
         }
     }
 
-    /*Finds the count for the key given*/
+    /**
+     * Find int.
+     *
+     * @param key the key
+     * @return the int
+     * @throws Exception the exception
+     */
+/*Finds the count for the key given*/
     public int find(String key) throws Exception {
         int count = 0;
         if (size == 0) {
@@ -89,6 +119,12 @@ public class WordList {
     }
 
 
+    /**
+     * Delete.
+     *
+     * @param key the key
+     * @throws Exception the exception
+     */
     public void delete(String key) throws Exception {
         boolean deleted = false;
         if (size == 1) {
@@ -121,6 +157,11 @@ public class WordList {
         }
     }
 
+    /**
+     * Increase.
+     *
+     * @param key the key
+     */
     public void increase(String key) {
         boolean keyFound = false;
         if (size == 0) {
@@ -154,14 +195,19 @@ public class WordList {
         return s;
     }
 
-    public StringBuilder    getAvailableKeyValues() {
+    /**
+     * Gets available key values.
+     *
+     * @return the available key values
+     */
+    public StringBuilder getAvailableKeyValues() {
         StringBuilder sb = new StringBuilder();
         if (size > 0) {
             Word currentWord = head.next;
             while (currentWord != null) {
                 sb.append("Key: ");
                 sb.append(currentWord.wordText);
-                sb.append(", Value: ");
+                sb.append("; Value: ");
                 sb.append(currentWord.count);
                 sb.append("\n");
                 currentWord = currentWord.next;

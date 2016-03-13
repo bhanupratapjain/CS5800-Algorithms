@@ -5,17 +5,34 @@ package homework02.question01;
  */
 public class WordHashTable {
 
+    /**
+     * The Hash table.
+     */
     public WordList[] hashTable;
+    /**
+     * The Hash table size.
+     */
     public int hashTableSize;
+    /**
+     * The Used hash.
+     */
     public int usedHash;
 
+    /**
+     * Instantiates a new Word hash table.
+     */
     public WordHashTable(){
         this.hashTable = null;
         this.hashTableSize = 0;
         this.usedHash = 0;
     }
 
-    /*Initialize the HashTable*/
+    /**
+     * Instantiates a new Word hash table.
+     *
+     * @param size the size
+     */
+/*Initialize the HashTable*/
     public WordHashTable(int size){
         this.hashTableSize = size;
         this.hashTable = new WordList[this.hashTableSize];
@@ -26,6 +43,12 @@ public class WordHashTable {
         }
     }
 
+    /**
+     * Gets hash code.
+     *
+     * @param word the word
+     * @return the hash code
+     */
     public int getHashCode(String word) {
         int hashCode = 0;
         char[] inputWord = word.toCharArray();
@@ -37,27 +60,56 @@ public class WordHashTable {
         return hashCode;
     }
 
+    /**
+     * Insert.
+     *
+     * @param key   the key
+     * @param value the value
+     */
     public void insert(String key, int value){
         Word word = new Word(key,value);
         int hashCode = getHashCode(word.wordText);
         this.hashTable[hashCode].insertOrUpdate(word);
     }
 
+    /**
+     * Find int.
+     *
+     * @param key the key
+     * @return the int
+     * @throws Exception the exception
+     */
     public int find(String key) throws Exception {
         int hashCode = getHashCode(key);
         return this.hashTable[hashCode].find(key);
     }
 
+    /**
+     * Delete.
+     *
+     * @param key the key
+     * @throws Exception the exception
+     */
     public void delete(String key) throws Exception {
         int hashCode = getHashCode(key);
         this.hashTable[hashCode].delete(key);
     }
 
+    /**
+     * Increase.
+     *
+     * @param key the key
+     */
     public void increase(String key){
         int hashCode = getHashCode(key);
         this.hashTable[hashCode].increase(key);
     }
 
+    /**
+     * List all keys string.
+     *
+     * @return the string
+     */
     public String listAllKeys(){
         StringBuilder sb = new StringBuilder();
         for(int i=0;i<this.hashTableSize;i++){
