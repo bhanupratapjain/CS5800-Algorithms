@@ -13,6 +13,21 @@ import java.util.List;
 public class HashText {
 
     /**
+     * The entry point of application.
+     *
+     * @param args the input arguments
+     */
+    public static void main(String[] args) {
+        HashText ht = new HashText();
+        //ht.test();
+        String inputFile = "C:\\Users\\Bhanu\\IdeaProjects\\CS5800-Algorithms\\PA\\" +
+                "src\\homework02\\question01\\input\\test_input.txt";
+        String outputFileLocation = "C:\\Users\\Bhanu\\IdeaProjects\\CS5800-Algorithms\\PA\\" +
+                "src\\homework02\\question01\\output\\";
+        ht.hashTextFile(inputFile, outputFileLocation);
+    }
+
+    /**
      * Test.
      */
     public void test() {
@@ -65,7 +80,7 @@ public class HashText {
             }
             String hashingOutput = hashTable.listAllKeys();
             System.out.println(hashingOutput);
-            createOutputFile(hashingOutput,fileLoaction);
+            createOutputFile(hashingOutput, fileLoaction);
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -81,7 +96,7 @@ public class HashText {
     public void createOutputFile(String content, String fileLoaction) {
 
         System.out.println("Creating OutputFile");
-        File file = new File(fileLoaction+"test_out_"+System.currentTimeMillis()+".txt");
+        File file = new File(fileLoaction + "test_out_" + System.currentTimeMillis() + ".txt");
         try (FileOutputStream fop = new FileOutputStream(file)) {
 
             // if file doesn't exists, then create it
@@ -135,18 +150,4 @@ public class HashText {
         return true;
     }
 
-    /**
-     * The entry point of application.
-     *
-     * @param args the input arguments
-     */
-    public static void main(String[] args) {
-        HashText ht = new HashText();
-        //ht.test();
-        String inputFile = "C:\\Users\\Bhanu\\IdeaProjects\\CS5800-Algorithms\\PA\\" +
-                "src\\homework02\\question01\\input\\test_input.txt";
-        String outputFileLocation = "C:\\Users\\Bhanu\\IdeaProjects\\CS5800-Algorithms\\PA\\" +
-                "src\\homework02\\question01\\output\\";
-        ht.hashTextFile(inputFile, outputFileLocation);
-    }
 }
