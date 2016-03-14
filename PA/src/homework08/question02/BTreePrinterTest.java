@@ -4,6 +4,9 @@ package homework08.question02;
  * Created by Bhanu on 14/03/2016.
  */
 
+/**
+ * The type B tree printer test.
+ */
 public class BTreePrinterTest {
 
     private static RedBlackNode test1() {
@@ -43,6 +46,11 @@ public class BTreePrinterTest {
         return root;
     }
 
+    /**
+     * The entry point of application.
+     *
+     * @param args the input arguments
+     */
     public static void main(String[] args) {
         RBTreePrinter.printRBTree(test1());
     }

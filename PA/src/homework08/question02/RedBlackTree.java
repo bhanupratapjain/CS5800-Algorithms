@@ -6,10 +6,19 @@ package homework08.question02;
 public class RedBlackTree {
 
 
-    /*Initializing root to nil*/
+    /**
+     * The Nil.
+     */
+/*Initializing root to nil*/
     public RedBlackNode nil = new RedBlackNode();
+    /**
+     * The Root.
+     */
     public RedBlackNode root = nil;
 
+    /**
+     * Instantiates a new Red black tree.
+     */
     public RedBlackTree() {
         root.left = nil;
         root.right = nil;
@@ -17,6 +26,11 @@ public class RedBlackTree {
     }
 
 
+    /**
+     * Insert.
+     *
+     * @param key the key
+     */
     public void insert(int key) {
         RedBlackNode redBlackNode = new RedBlackNode(key);
         insert(redBlackNode);
@@ -158,7 +172,7 @@ public class RedBlackTree {
         root.color = RedBlackNode.Color.BLACK;
     }
 
-    private void rotateRight(RedBlackNode y) {
+    public void rotateRight(RedBlackNode y) {
 
         RedBlackNode x = y.left;
         /*Turn X's Right Subtree in Y's Left Subtree*/
@@ -188,7 +202,7 @@ public class RedBlackTree {
         y.parent = x;
     }
 
-    private void rotateLeft(RedBlackNode x) {
+    public void rotateLeft(RedBlackNode x) {
         RedBlackNode y = x.right;
         /*Turn Y's Left Subtree in X's Right Subtree*/
         x.right = y.left;
@@ -214,6 +228,96 @@ public class RedBlackTree {
         /*x becomes y's left*/
         y.left = x;
         x.parent = y;
+    }
+
+
+    /**
+     * Search red black node.
+     *
+     * @param key the key
+     * @return the red black node
+     */
+    public RedBlackNode search(int key){
+        RedBlackNode currentNode = root;
+        while (currentNode != nil && currentNode !=null){
+            if(currentNode.key==key){
+                return currentNode;
+            }else if(key > currentNode.key){
+                currentNode = currentNode.right;
+            }else{
+                currentNode = currentNode.left;
+            }
+        }
+        return null;
+    }
+
+
+    /**
+     * Mininmum red black node.
+     *
+     * @param node the node
+     * @return the red black node
+     */
+    public RedBlackNode min(RedBlackNode node){
+        RedBlackNode currentNode = node;
+        while(currentNode.left != nil && currentNode.left!=null){
+            currentNode=currentNode.left;
+        }
+        return currentNode;
+    }
+
+    /**
+     * Max red black node.
+     *
+     * @param node the node
+     * @return the red black node
+     */
+    public RedBlackNode max(RedBlackNode node){
+        RedBlackNode currentNode = node;
+        while(currentNode.right!= nil && currentNode.right!=null){
+            currentNode=currentNode.right;
+        }
+        return currentNode;
+    }
+
+
+    /**
+     * Successor red black node.
+     *
+     * @param node the node
+     * @return the red black node
+     */
+    public RedBlackNode successor(RedBlackNode node){
+        RedBlackNode currentNode = node;
+        if(currentNode.right != nil && currentNode.right!=null){
+            return this.min(currentNode.right);
+        }
+        RedBlackNode y = currentNode.parent;
+        while (y!=nil&&y!=null&& currentNode==y.right){
+            currentNode = y;
+            y= y.parent;
+        }
+        return y;
+    }
+
+
+    /**
+     * Predeccessor red black node.
+     *
+     * @param node the node
+     * @return the red black node
+     */
+    public RedBlackNode predecessor(RedBlackNode node){
+        RedBlackNode currentNode = node;
+        if(currentNode.left != nil && currentNode.left!=null){
+            return this.max(currentNode.left);
+        }
+        RedBlackNode x = currentNode.parent;
+        while (x!=nil&&x!=null&& currentNode==x.left){
+            currentNode = x;
+            x= x.parent;
+        }
+        return x;
     }
 
 }

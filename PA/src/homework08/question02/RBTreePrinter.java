@@ -12,6 +12,11 @@ public class RBTreePrinter {
     private RedBlackNode nil = new RedBlackNode();
 
 
+    /**
+     * Print rb tree.
+     *
+     * @param root the root
+     */
     public static void printRBTree(RedBlackNode root) {
         int maxLevel = RBTreePrinter.maxLevel(root);
 
