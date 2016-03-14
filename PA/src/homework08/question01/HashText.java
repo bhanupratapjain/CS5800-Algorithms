@@ -1,4 +1,4 @@
-package homework02.question01;
+package homework08.question01;
 
 import org.apache.commons.lang3.StringUtils;
 
@@ -21,9 +21,9 @@ public class HashText {
         HashText ht = new HashText();
         //ht.test();
         String inputFile = "C:\\Users\\Bhanu\\IdeaProjects\\CS5800-Algorithms\\PA\\" +
-                "src\\homework02\\question01\\input\\test_input.txt";
+                "src\\homework08\\question01\\input\\test_input.txt";
         String outputFileLocation = "C:\\Users\\Bhanu\\IdeaProjects\\CS5800-Algorithms\\PA\\" +
-                "src\\homework02\\question01\\output\\";
+                "src\\homework08\\question01\\output\\";
         ht.hashTextFile(inputFile, outputFileLocation);
     }
 
