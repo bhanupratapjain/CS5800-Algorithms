@@ -105,9 +105,8 @@ public class Test {
     /**
      * Interactive test.
      */
-    public static void interactiveTest() {
-        List<String> input = getInput("C:\\Users\\Bhanu\\IdeaProjects\\CS5800-Algorithms\\PA\\" +
-                "src\\homework08\\question02\\input\\test_input.txt");
+    public static void interactiveTest(String inputFile) {
+        List<String> input = getInput(inputFile);
 
         RedBlackTree rbt = null;
 
@@ -234,8 +233,9 @@ public class Test {
      * @param args the input arguments
      */
     public static void main(String[] args) {
-
-        interactiveTest();
+        String inputFile = "C:\\Users\\Bhanu\\IdeaProjects\\CS5800-Algorithms\\PA\\" +
+                "src\\homework08\\question02\\input\\test_input.txt";
+        interactiveTest(inputFile);
 //        customTest();
 
     }
