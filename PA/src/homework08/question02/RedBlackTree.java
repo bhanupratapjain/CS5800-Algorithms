@@ -1,5 +1,7 @@
 package homework08.question02;
 
+import java.util.ArrayList;
+
 /**
  * Created by Bhanu on 13/03/2016.
  */
@@ -172,6 +174,11 @@ public class RedBlackTree {
         root.color = RedBlackNode.Color.BLACK;
     }
 
+    /**
+     * Rotate right.
+     *
+     * @param y the y
+     */
     public void rotateRight(RedBlackNode y) {
 
         RedBlackNode x = y.left;
@@ -202,6 +209,11 @@ public class RedBlackTree {
         y.parent = x;
     }
 
+    /**
+     * Rotate left.
+     *
+     * @param x the x
+     */
     public void rotateLeft(RedBlackNode x) {
         RedBlackNode y = x.right;
         /*Turn Y's Left Subtree in X's Right Subtree*/
@@ -318,6 +330,23 @@ public class RedBlackTree {
             x= x.parent;
         }
         return x;
+    }
+
+
+    /**
+     * Sort array list.
+     *
+     * @param node the node
+     * @return the array list
+     */
+    public ArrayList<Integer> sort(RedBlackNode node){
+        ArrayList<Integer> sortedList= new ArrayList<>();
+        if(node!=nil&& node!=null){
+            sortedList.addAll(sort(node.left));
+            sortedList.add(node.key);
+            sortedList.addAll(sort(node.right));
+        }
+        return sortedList;
     }
 
 }

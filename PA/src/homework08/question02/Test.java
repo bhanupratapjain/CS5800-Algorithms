@@ -135,7 +135,8 @@ public class Test {
         System.out.println("7. 'MAX_<key value>' ");
         System.out.println("8. 'SUCCESSOR_<key value>' ");
         System.out.println("9. 'PREDECESSOR_<key value>' ");
-        System.out.println("10. 'EXIT' ");
+        System.out.println("10. 'SORT' ");
+        System.out.println("11. 'EXIT' ");
         String userInput = "start";
         while (!StringUtils.equalsIgnoreCase(userInput, "EXIT")) {
             userInput = reader.nextLine(); // Scans the next token of the input as an int.
@@ -218,6 +219,14 @@ public class Test {
                     System.out.println("Please create RBT using insert.");
                 }
                 System.out.println("Executing PREDECESSOR OPERATION");
+            } else if (StringUtils.equalsIgnoreCase(userInput, "SORT")) {
+                if (rbt != null) {
+                    for (int key : rbt.sort(rbt.root)) {
+                        System.out.println(key);
+                    }
+                } else {
+                    System.out.println("Please create RBT using insert.");
+                }
             } else {
                 System.out.println("Command Not Recognised. Try again or type 'Exit' to finish.");
             }
@@ -232,12 +241,15 @@ public class Test {
         RedBlackTree rbt = createTree();
         RBTreePrinter.printRBTree(rbt.root);
 //        RBTreePrinter.printRBTree(rbt.root);
-        RBTreePrinter.printRBTree(rbt.search(2));
+//        RBTreePrinter.printRBTree(rbt.search(2));
 //        RBTreePrinter.printRBTree(rbt.min(rbt.root));
 //        RBTreePrinter.printRBTree(rbt.max(rbt.root));
 //        RBTreePrinter.printRBTree(rbt.successor(rbt.root));
 //        RBTreePrinter.printRBTree(rbt.predecessor(rbt.root));
 
+        for (int key : rbt.sort(rbt.root)) {
+            System.out.println(key);
+        }
 
     }
 
