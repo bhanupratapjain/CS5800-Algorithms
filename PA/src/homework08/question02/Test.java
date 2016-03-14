@@ -16,6 +16,20 @@ import java.util.Scanner;
 public class Test {
 
     /**
+     * The entry point of application.
+     *
+     * @param args the input arguments
+     */
+    public static void main(String[] args) {
+        String inputFile = "C:\\Users\\Bhanu\\IdeaProjects\\CS5800-Algorithms\\PA\\" +
+                "src\\homework08\\question02\\input\\test_input.txt";
+        interactiveTest(inputFile);
+//        customTest();
+
+    }
+
+
+    /**
      * Print test red black node.
      *
      * @return the red black node
@@ -227,16 +241,4 @@ public class Test {
 
     }
 
-    /**
-     * The entry point of application.
-     *
-     * @param args the input arguments
-     */
-    public static void main(String[] args) {
-        String inputFile = "C:\\Users\\Bhanu\\IdeaProjects\\CS5800-Algorithms\\PA\\" +
-                "src\\homework08\\question02\\input\\test_input.txt";
-        interactiveTest(inputFile);
-//        customTest();
-
-    }
 }
