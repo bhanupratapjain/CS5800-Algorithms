@@ -136,7 +136,8 @@ public class Test {
         System.out.println("8. 'SUCCESSOR_<key value>' ");
         System.out.println("9. 'PREDECESSOR_<key value>' ");
         System.out.println("10. 'SORT' ");
-        System.out.println("11. 'EXIT' ");
+        System.out.println("11. 'APPEND_<key value>' ");
+        System.out.println("12. 'EXIT' ");
         String userInput = "start";
         while (!StringUtils.equalsIgnoreCase(userInput, "EXIT")) {
             userInput = reader.nextLine(); // Scans the next token of the input as an int.
@@ -152,6 +153,15 @@ public class Test {
                     System.out.println("Please provide input file.");
                 }
 
+            } else if (StringUtils.startsWith(StringUtils.upperCase(userInput), "APPEND")) {
+                System.out.println("Executing APPEND OPERATION");
+                if (rbt != null) {
+                    String key = userInput.split("_")[1];
+                    rbt.insert(Integer.parseInt(key));
+                    RBTreePrinter.printRBTree(rbt.root);
+                } else {
+                    System.out.println("Please create RBT using insert.");
+                }
             } else if (StringUtils.equalsIgnoreCase(userInput, "PRINT")) {
                 System.out.println("Executing PRINT OPERATION");
                 if (rbt != null) {
@@ -236,6 +246,7 @@ public class Test {
     /**
      * Custom test.
      */
+
     public static void customTest() {
 
         RedBlackTree rbt = createTree();
