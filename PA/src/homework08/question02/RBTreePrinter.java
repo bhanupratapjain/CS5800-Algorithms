@@ -31,7 +31,7 @@ public class RBTreePrinter {
 
         List<RedBlackNode> newRedBlackNodes = new ArrayList<RedBlackNode>();
         for (RedBlackNode node : nodes) {
-            if (node != null) {
+            if (node != null && node.key!=0) {
                 System.out.print((node.color == RedBlackNode.Color.BLACK ? "B" : "R") + node.key);
                 newRedBlackNodes.add(node.left);
                 newRedBlackNodes.add(node.right);
@@ -53,14 +53,14 @@ public class RBTreePrinter {
                     continue;
                 }
 
-                if (nodes.get(j).left != null)
+                if (nodes.get(j).left != null && nodes.get(j).left.key!=0)
                     System.out.print("/");
                 else
                     RBTreePrinter.printWhitespaces(1);
 
                 RBTreePrinter.printWhitespaces(i + i - 1);
 
-                if (nodes.get(j).right != null)
+                if (nodes.get(j).right != null && nodes.get(j).right.key!=0 )
                     System.out.print("\\");
                 else
                     RBTreePrinter.printWhitespaces(1);
@@ -83,7 +83,7 @@ public class RBTreePrinter {
         if (node == null)
             return 0;
 
-            return Math.max(RBTreePrinter.maxLevel(node.left), RBTreePrinter.maxLevel(node.right)) + 1;
+            return Math.max(node.left.key==0?0:RBTreePrinter.maxLevel(node.left), node.right.key==0?0:RBTreePrinter.maxLevel(node.right)) + 1;
     }
 
     private static boolean isAllElementsNull(List list) {

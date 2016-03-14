@@ -7,7 +7,7 @@ public class RedBlackTree {
 
 
     /*Initializing root to nil*/
-    private RedBlackNode nil = new RedBlackNode();
+    public RedBlackNode nil = new RedBlackNode();
     public RedBlackNode root = nil;
 
     public RedBlackTree() {
@@ -59,8 +59,8 @@ public class RedBlackTree {
 
         /*Initialize Z
          */
-        z.left = null;
-        z.right = null;
+        z.left = nil;
+        z.right = nil;
         z.color = RedBlackNode.Color.RED;
 
 
