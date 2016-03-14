@@ -6,19 +6,26 @@ package homework08.question02;
 public class RedBlackTree {
 
 
-    public enum Color {
-        RED,
-        BLACK
+    /*Initializing root to nil*/
+    private RedBlackNode nil = new RedBlackNode();
+    private RedBlackNode root = nil;
+
+    public RedBlackTree(){
+        root.left = nil;
+        root.right = nil;
+        root.parent = nil;
     }
 
-    public static class Node {
-        int data;
-        Color color;
-        Node left;
-        Node right;
-        Node parent;
-        boolean isNullLeaf;
+
+    public void insert(int key) {
+        RedBlackNode redBlackNode = new RedBlackNode(key);
+        insert(redBlackNode);
     }
 
+
+    private void insert(RedBlackNode redBlackNode){
+
+
+    }
 
 }
