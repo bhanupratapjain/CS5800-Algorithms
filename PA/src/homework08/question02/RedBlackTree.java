@@ -45,7 +45,7 @@ public class RedBlackTree {
         RedBlackNode x = root;
 
         /*Continue till we reach the end.*/
-        while (x != nil && x!=null) {
+        while (x != nil && x != null) {
             y = x;
             if (z.key < x.key) {
                 //Go Left
@@ -63,7 +63,7 @@ public class RedBlackTree {
           thus we put z at the root. Else we find the appropriate left or right
           position for z under y
           */
-        if (y == nil) {
+        if (y == nil || y == null) {
             root = z;
         } else if (z.key < y.key) {
             //z.color = RedBlackNode.Color.RED;
@@ -106,32 +106,29 @@ public class RedBlackTree {
                      z's grandfather->red
                      replace z with parent
                      */
+                    z.parent.color = RedBlackNode.Color.BLACK;
                     y.color = RedBlackNode.Color.BLACK;
-                    z.color = RedBlackNode.Color.BLACK;
                     z.parent.parent.color = RedBlackNode.Color.RED;
                     z = z.parent.parent;
 
-                }
-                /*Case 2:
-                i) If z's uncle is Black
-                ii) Z is the right child
-                */
-                else if (z == z.parent.right) {
-                    z = z.parent;
-                    rotateLeft(z);
-                }
+                } else {
+                    /*Case 2:
+                    i) If z's uncle is Black
+                    ii) Z is the right child
+                    */
+                    if (z == z.parent.right) {
+                        z = z.parent;
+                        rotateLeft(z);
+                    }
 
-                /*Case 3:
-                i) If z's uncle is Black
-                ii) Z is the left child
-                */
-                else {
-
+                    /*Case 3:
+                    i) If z's uncle is Black
+                    ii) Z is the left child
+                    */
                     z.parent.color = RedBlackNode.Color.BLACK;
                     z.parent.parent.color = RedBlackNode.Color.RED;
                     rotateRight(z.parent.parent);
                 }
-
             }
             /*When z.parent is right of z.parent.parent*/
             else {
@@ -145,29 +142,29 @@ public class RedBlackTree {
                      z's grandfather->red
                       replace z with parent
                      */
+                    z.parent.color= RedBlackNode.Color.BLACK;
                     y.color = RedBlackNode.Color.BLACK;
-                    z.color = RedBlackNode.Color.BLACK;
                     z.parent.parent.color = RedBlackNode.Color.RED;
                     z = z.parent.parent;
-                }
-                /*Case 2:
-                i) If z's uncle is Black
-                ii) Z is the right child
-                */
-                else if (z == z.parent.right) {
-                    z = z.parent;
-                    rotateRight(z);
-                }
+                } else {
+                    /*Case 2:
+                    i) If z's uncle is Black
+                    ii) Z is the right child
+                    */
+                    if (z == z.parent.left) {
+                        z = z.parent;
+                        rotateRight(z);
+                    }
 
-                /*Case 3:
-                i) If z's uncle is Black
-                ii) Z is the left child
-                */
-                else {
+                    /*Case 3:
+                    i) If z's uncle is Black
+                    ii) Z is the left child
+                    */
                     z.parent.color = RedBlackNode.Color.BLACK;
                     z.parent.parent.color = RedBlackNode.Color.RED;
                     rotateLeft(z.parent.parent);
                 }
+
             }
         }
         /*Making Sure Root remains black*/
@@ -186,7 +183,7 @@ public class RedBlackTree {
         y.left = x.right;
 
         /*Check if x has a right, then link x's right to y as parent*/
-        if (x.right != nil && x.right!=null) {
+        if (x.right != nil && x.right != null) {
             x.right.parent = y;
         }
 
@@ -220,12 +217,12 @@ public class RedBlackTree {
         x.right = y.left;
 
         /*Check if y has a left, then link y's left to x as parent*/
-        if (y.left != nil && y.left!=null) {
+        if (y.left != nil && y.left != null) {
             y.left.parent = x;
         }
         y.parent = x.parent;
         /*Check if x's parent are nil then y will be root*/
-        if (x.parent == nil || x.parent==null) {
+        if (x.parent == nil || x.parent == null) {
             root = y;
         }
         /*if x is left of Parent, then make y as left of x's parent*/
@@ -249,14 +246,14 @@ public class RedBlackTree {
      * @param key the key
      * @return the red black node
      */
-    public RedBlackNode search(int key){
+    public RedBlackNode search(int key) {
         RedBlackNode currentNode = root;
-        while (currentNode != nil && currentNode !=null){
-            if(currentNode.key==key){
+        while (currentNode != nil && currentNode != null) {
+            if (currentNode.key == key) {
                 return currentNode;
-            }else if(key > currentNode.key){
+            } else if (key > currentNode.key) {
                 currentNode = currentNode.right;
-            }else{
+            } else {
                 currentNode = currentNode.left;
             }
         }
@@ -270,10 +267,10 @@ public class RedBlackTree {
      * @param node the node
      * @return the red black node
      */
-    public RedBlackNode min(RedBlackNode node){
+    public RedBlackNode min(RedBlackNode node) {
         RedBlackNode currentNode = node;
-        while(currentNode.left != nil && currentNode.left!=null){
-            currentNode=currentNode.left;
+        while (currentNode.left != nil && currentNode.left != null) {
+            currentNode = currentNode.left;
         }
         return currentNode;
     }
@@ -284,10 +281,10 @@ public class RedBlackTree {
      * @param node the node
      * @return the red black node
      */
-    public RedBlackNode max(RedBlackNode node){
+    public RedBlackNode max(RedBlackNode node) {
         RedBlackNode currentNode = node;
-        while(currentNode.right!= nil && currentNode.right!=null){
-            currentNode=currentNode.right;
+        while (currentNode.right != nil && currentNode.right != null) {
+            currentNode = currentNode.right;
         }
         return currentNode;
     }
@@ -299,15 +296,15 @@ public class RedBlackTree {
      * @param node the node
      * @return the red black node
      */
-    public RedBlackNode successor(RedBlackNode node){
+    public RedBlackNode successor(RedBlackNode node) {
         RedBlackNode currentNode = node;
-        if(currentNode.right != nil && currentNode.right!=null){
+        if (currentNode.right != nil && currentNode.right != null) {
             return this.min(currentNode.right);
         }
         RedBlackNode y = currentNode.parent;
-        while (y!=nil&&y!=null&& currentNode==y.right){
+        while (y != nil && y != null && currentNode == y.right) {
             currentNode = y;
-            y= y.parent;
+            y = y.parent;
         }
         return y;
     }
@@ -319,15 +316,15 @@ public class RedBlackTree {
      * @param node the node
      * @return the red black node
      */
-    public RedBlackNode predecessor(RedBlackNode node){
+    public RedBlackNode predecessor(RedBlackNode node) {
         RedBlackNode currentNode = node;
-        if(currentNode.left != nil && currentNode.left!=null){
+        if (currentNode.left != nil && currentNode.left != null) {
             return this.max(currentNode.left);
         }
         RedBlackNode x = currentNode.parent;
-        while (x!=nil&&x!=null&& currentNode==x.left){
+        while (x != nil && x != null && currentNode == x.left) {
             currentNode = x;
-            x= x.parent;
+            x = x.parent;
         }
         return x;
     }
@@ -339,9 +336,9 @@ public class RedBlackTree {
      * @param node the node
      * @return the array list
      */
-    public ArrayList<Integer> sort(RedBlackNode node){
-        ArrayList<Integer> sortedList= new ArrayList<>();
-        if(node!=nil&& node!=null){
+    public ArrayList<Integer> sort(RedBlackNode node) {
+        ArrayList<Integer> sortedList = new ArrayList<>();
+        if (node != nil && node != null) {
             sortedList.addAll(sort(node.left));
             sortedList.add(node.key);
             sortedList.addAll(sort(node.right));
