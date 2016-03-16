@@ -63,7 +63,7 @@ public class HashText {
             String sCurrentLine = null;
             List<String> stringList = new ArrayList<String>();
             while ((sCurrentLine = br.readLine()) != null) {
-                stringList.addAll(Arrays.asList(sCurrentLine.replaceAll("[^a-zA-Z ]", "").toLowerCase().split("\\s+")));
+                stringList.addAll(Arrays.asList(sCurrentLine.replaceAll("[^a-zA-Z ]", "").split("\\s+")));
             }
             WordHashTable hashTable = new WordHashTable(getPrime(stringList.size()));
             for (String input : stringList) {
