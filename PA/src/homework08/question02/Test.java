@@ -137,7 +137,8 @@ public class Test {
         System.out.println("9. 'PREDECESSOR_<key value>' ");
         System.out.println("10. 'SORT' ");
         System.out.println("11. 'APPEND_<key value>' ");
-        System.out.println("12. 'EXIT' ");
+        System.out.println("12. 'DELETE_<key value>' ");
+        System.out.println("13. 'EXIT' ");
         String userInput = "start";
         while (!StringUtils.equalsIgnoreCase(userInput, "EXIT")) {
             userInput = reader.nextLine(); // Scans the next token of the input as an int.
@@ -230,6 +231,7 @@ public class Test {
                 }
                 System.out.println("Executing PREDECESSOR OPERATION");
             } else if (StringUtils.equalsIgnoreCase(userInput, "SORT")) {
+                System.out.println("Executing SORT OPERATION");
                 if (rbt != null) {
                     for (int key : rbt.sort(rbt.root)) {
                         System.out.println(key);
@@ -237,6 +239,17 @@ public class Test {
                 } else {
                     System.out.println("Please create RBT using insert.");
                 }
+            } else if (StringUtils.startsWith(StringUtils.upperCase(userInput), "DELETE")) {
+                System.out.println("Executing DELETE OPERATION");
+                if (rbt != null) {
+                    String key = userInput.split("_")[1];
+                    RedBlackNode node = rbt.search(Integer.parseInt(key));
+                    rbt.delete(node);
+                    RBTreePrinter.printRBTree(rbt.root);
+                } else {
+                    System.out.println("Please create RBT using insert.");
+                }
+                System.out.println("Executing PREDECESSOR OPERATION");
             } else {
                 System.out.println("Command Not Recognised. Try again or type 'Exit' to finish.");
             }
