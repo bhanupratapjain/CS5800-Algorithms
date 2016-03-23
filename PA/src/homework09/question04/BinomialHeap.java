@@ -2,6 +2,7 @@ package homework09.question04;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Stack;
 
 /**
  * Created by Bhanu on 22/03/2016.
@@ -339,6 +340,23 @@ public class BinomialHeap {
                 print(level + 1, curr.child);
             }
             curr = curr.sibling;
+        }
+    }
+
+
+    public void printNew(BinomialHeapNode curr){
+
+        System.out.print(curr.key);
+        BinomialHeapNode child = curr.child;
+
+        while (null!=child) {
+            Stack s = new Stack();
+            System.out.println("`--");
+            BinomialHeapNode next = child.sibling;
+            s.push(null!=next?'|' : ' ');
+            printNew(child);
+            s.pop();
+            child = next;
         }
     }
 

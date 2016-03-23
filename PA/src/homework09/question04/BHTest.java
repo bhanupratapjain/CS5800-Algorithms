@@ -16,8 +16,9 @@ public class BHTest {
 //            heap.traversal(heap.head);
 //            System.out.println();
         }
-		heap.traversal(heap.head);
-		heap.print();
+//		heap.traversal(heap.head);
+//		heap.print();
+        heap.printNew(heap.head.sibling);
 
 //		BinomialHeapNode n = heap.find(85, heap.head);
 //		System.out.println();
