@@ -5,19 +5,38 @@ package homework09.question04;
  */
 public class BinomialHeapNode {
 
+    /**
+     * The Parent.
+     */
     BinomialHeapNode parent;
+    /**
+     * The Child.
+     */
     BinomialHeapNode child;
+    /**
+     * The Sibling.
+     */
     BinomialHeapNode sibling;
+    /**
+     * The Key.
+     */
     int key;
+    /**
+     * The Degree.
+     */
     int degree;
 
-    public BinomialHeapNode(int ele) {
+    /**
+     * Instantiates a new Binomial heap node.
+     *
+     * @param keyValue the keyValue
+     */
+    public BinomialHeapNode(int keyValue) {
         parent = null;
         child = null;
         sibling = null;
-        key = ele;
+        key = keyValue;
         degree = 0;
     }
-
 
 }
