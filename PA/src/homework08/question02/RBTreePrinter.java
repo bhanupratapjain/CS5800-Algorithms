@@ -29,14 +29,15 @@ public class RBTreePrinter {
 
         int floor = maxLevel - level;
         int endgeLines = (int) Math.pow(2, (Math.max(floor - 1, 0)));
-        int firstSpaces = (int) Math.pow(2, (floor));
+        int firstSpaces = (int) Math.pow(2, (floor)) - 1;
         int betweenSpaces = (int) Math.pow(2, (floor + 1)) - 1;
 
-        RBTreePrinter.printWhitespaces(firstSpaces);
+        RBTreePrinter.printWhitespaces(firstSpaces-floor);
 
         List<RedBlackNode> newRedBlackNodes = new ArrayList<RedBlackNode>();
         for (RedBlackNode node : nodes) {
             if (node != null && node.key!=0) {
+//                System.out.print(node.key);
                 System.out.print((node.color == RedBlackNode.Color.BLACK ? "B" : "R") + node.key);
                 newRedBlackNodes.add(node.left);
                 newRedBlackNodes.add(node.right);

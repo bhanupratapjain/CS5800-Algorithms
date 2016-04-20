@@ -73,25 +73,38 @@ public class YShapedSinleLinkedList {
 
         YShapedSinleLinkedList linkedList = new YShapedSinleLinkedList();
 
-        Node headA = new Node(1);
-        Node headB = new Node(8);
-
         Node node2 = new Node(2);
         Node node3 = new Node(3);
         Node node4 = new Node(4);
         Node node5 = new Node(5);
         Node node6 = new Node(6);
+        Node node7 = new Node(7);
+        Node node8 = new Node(8);
+        Node node9 = new Node(9);
+        Node node10 = new Node(10);
+        Node node11 = new Node(11);
+        Node node12 = new Node(12);
 
-        headA.setNextNode(node2);
-        node2.setNextNode(node3);
-        node3.setNextNode(node4);
-        node4.setNextNode(node5);
+        Node headA = node11;
+        Node headB = node11;
 
-        headB.setNextNode(node6);
-        node6.setNextNode(node4);
+
+//        headA.setNextNode(node6);
+//        node6.setNextNode(node7);
+//        node7.setNextNode(node8);
+//        node8.setNextNode(node9);
+//        node9.setNextNode(node10);
+//        node10.setNextNode(node11);
+//
+//        headB.setNextNode(node12);
+//        node12.setNextNode(node8);
+//        node8.setNextNode(node9);
 
         linkedList.headA = headA;
         linkedList.headB = headB;
+
+        //6 11
+        // 11
 
         System.out.println("Running ");
         System.out.println("Count of Head A :: "+ linkedList.countLength(headA));

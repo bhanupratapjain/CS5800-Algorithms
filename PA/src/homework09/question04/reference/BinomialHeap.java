@@ -1,4 +1,4 @@
-package homework09.question04;
+package homework09.question04.reference;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -17,7 +17,7 @@ public class BinomialHeap {
     /**
      * Instantiates a new Binomial heap.
      */
-    BinomialHeap(){
+    BinomialHeap() {
         this.head = null;
     }
 
@@ -159,6 +159,71 @@ public class BinomialHeap {
         }
     }
 
+
+    /**
+     * Removes and returns the smallest key in the binomial heap.
+     */
+    public int extractMin1() {
+        // Special case for an empty binomial heap.
+        if (this.head == null){
+            System.out.println("empty heap");
+            return 0;
+        }
+
+        // Find the root x with the minimum key in the root list.
+        BinomialHeapNode x = this.head; // node with minimum key
+        BinomialHeapNode y = x.sibling; // current node being examined
+        BinomialHeapNode pred = x; // y's predecessor
+        BinomialHeapNode xPred = null; // predecessor of x
+
+        while (y != null) {
+            if (y.key < x.key) {
+                x = y;
+                xPred = pred;
+            }
+            pred = y;
+            y = y.sibling;
+        }
+
+        removeFromRootList(x, xPred);
+        return x.key;
+    }
+
+
+    /**
+     * Helper method to remove a node from the root list.
+     *
+     * @param x
+     *            The node to remove from the root list.
+     * @param pred
+     *            The predecessor of <code>x</code> in the root list, or
+     *            <code>null</code> if <code>x</code> is the first node in
+     *            the root list.
+     */
+    private void removeFromRootList(BinomialHeapNode x, BinomialHeapNode pred) {
+        // Splice out x.
+        if (x == head)
+            head = x.sibling;
+        else
+            pred.sibling = x.sibling;
+
+        BinomialHeap temp = makeHeap();
+
+        // Reverse the order of x's children, setting hPrime.head to
+        // point to the head of the resulting list.
+        BinomialHeapNode z = x.child;
+        while (z != null) {
+            BinomialHeapNode next = z.sibling;
+            z.sibling = temp.head;
+            temp.head = z;
+            z = next;
+        }
+
+        BinomialHeap newHeap = union(temp);
+        head = newHeap.head;
+    }
+
+
     /**
      * Extract min binomial heap node.
      *
@@ -167,6 +232,7 @@ public class BinomialHeap {
     public BinomialHeapNode extractMin() {
         BinomialHeapNode x = this.head;
         BinomialHeapNode p = null, y = null, z = null;
+        p = x;
         int min = Integer.MAX_VALUE;
         while (x != null) {
             if (x.key < min) {
@@ -174,9 +240,10 @@ public class BinomialHeap {
                 y = x;
                 z = p;
             }
-            p = x;
+            p = y;
             x = x.sibling;
         }
+
         z.sibling = y.sibling;
         BinomialHeap temp = makeHeap();
         BinomialHeapNode cur = y.child;
@@ -212,7 +279,7 @@ public class BinomialHeap {
         x.key = k;
         BinomialHeapNode y = x.parent;
         while (y != null && y.key > x.key) {
-            exchange(x,y);
+            exchange(x, y);
             x = y;
             y = x.parent;
         }
@@ -250,6 +317,8 @@ public class BinomialHeap {
         if (x == null) {
             System.out.println("No such BinomialHeapNode!");
             return;
+        } else {
+            System.out.println("Node Found " + x.key);
         }
         decreaseKey(x, Integer.MIN_VALUE);
         extractMin();
@@ -297,16 +366,16 @@ public class BinomialHeap {
 
     }
 
-    public void print(BinomialHeapNode binomialHeapNode){
-        if (null ==binomialHeapNode) {
+    public void print(BinomialHeapNode binomialHeapNode) {
+        if (null == binomialHeapNode) {
             return;
         }
         List<BinomialHeapNode> nextLevelNodes = new ArrayList<BinomialHeapNode>();
         nextLevelNodes.add(binomialHeapNode);
 
-        for(int i=0;i<nextLevelNodes.size();i++){
+        for (int i = 0; i < nextLevelNodes.size(); i++) {
             BinomialHeapNode node = nextLevelNodes.get(i);
-            while (null!=node){
+            while (null != node) {
                 System.out.print(node.key + " ");
                 nextLevelNodes.add(node.child);
                 node = node.sibling;
@@ -317,10 +386,10 @@ public class BinomialHeap {
 
     }
 
-    public void print(){
+    public void print() {
         System.out.println("Binomial heap:");
         if (head != null) {
-            print(0,this.head);
+            print(0, this.head);
         }
     }
 
@@ -330,8 +399,11 @@ public class BinomialHeap {
             for (int i = 0; i < level; i++) {
                 sb.append(" ");
             }
-            if (level!=0) {
+            if (level != 0) {
                 sb.append("\\");
+//                for(int i=0;i<=level;i++){
+//                    sb.append("\\");
+//                }
             }
 
             sb.append(String.valueOf(curr.key));
@@ -344,16 +416,16 @@ public class BinomialHeap {
     }
 
 
-    public void printNew(BinomialHeapNode curr){
+    public void printNew(BinomialHeapNode curr) {
 
         System.out.print(curr.key);
         BinomialHeapNode child = curr.child;
 
-        while (null!=child) {
+        while (null != child) {
             Stack s = new Stack();
             System.out.println("`--");
             BinomialHeapNode next = child.sibling;
-            s.push(null!=next?'|' : ' ');
+            s.push(null != next ? '|' : ' ');
             printNew(child);
             s.pop();
             child = next;
