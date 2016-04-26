@@ -7,53 +7,43 @@ public class NewTest {
 
     public static void main(String[] args) throws EmptyHeapException {
 
-        int[] A = {17, 12, 90, 21};
-        int[] B = {25, 52, 95, 63, 18};
+        int[] A = {17, 10, 90, 21};
+        int[] B = {25, 7, 95, 88, 18};
 
         BinomialHeap heapA = new BinomialHeap();
         for (int i : A) {
             heapA.insert(i);
+//            System.out.println(heapA);
         }
-        System.out.println(heapA);
+        heapA.print();
 
 
         BinomialHeap heapB = new BinomialHeap();
-        for (int i : B) {
-            heapB.insert(i);
+        for (int j : B) {
+            heapB.insert(j);
         }
-        System.out.println(heapB);
+        heapB.print();
+//        System.out.println(heapB);
 
 
-        heapA =  heapA.union(heapB);
-        System.out.println(heapA);
-
-        int minA= heapA.extractMin();
-        System.out.println(minA);
-
-        System.out.println(heapA);
-
-        minA= heapA.extractMin();
-        System.out.println(minA);
-        System.out.println(heapA);
-
+        heapA = heapA.union(heapB);
+//        System.out.println(heapA);
         heapA.print();
-        Node n25 = heapA.find(25,heapA.head);
-        Node n18 = heapA.find(18,heapA.head);
-        System.out.println(n25.parent);
-        System.out.println(n25);
+
+        int minA = heapA.extractMin();
+        System.out.println(minA);
         System.out.println(" ");
-
-        heapA.decreaseKey(n25,16);
-        heapA.decreaseKey(n18,10);
-        System.out.println(heapA);
         heapA.print();
 
-        Node n63 = heapA.find(63,heapA.head);
-
-
-        heapA.delete(n63);
+        Node n95 = heapA.find(95, heapA.head);
+        heapA.decreaseKey(n95, 12);
         heapA.print();
 
+        Node n21 = heapA.find(21, heapA.head);
+        heapA.delete(n21);
+        heapA.print();
+
+        System.out.println(heapA.minimum());
 
 
     }

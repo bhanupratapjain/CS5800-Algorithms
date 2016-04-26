@@ -194,7 +194,7 @@ public class BinomialHeap {
         Node temp = target.child;
         while (temp != null) {
             Node next = temp.sibling;
-            temp.parent =null;
+            temp.parent = null;
             temp.sibling = hPrime.head;
             hPrime.head = temp;
             temp = next;
@@ -230,37 +230,37 @@ public class BinomialHeap {
         return x;
     }
 
-    /**
-     * Decrease key.
-     *
-     * @param x the x
-     * @param k the k
-     */
-    public void decreaseKey2(Node x, int k) {
-        if (k >= x.value) {
-            System.out.println("New key is not smaller than current key!");
-            return;
-        }
-        x.value = k;
-        Node y = x.parent;
-        while (y != null && y.value > x.value) {
-            exchange(x, y);
-            x = y;
-            y = x.parent;
-        }
-    }
-
-    /**
-     * Exchange.
-     *
-     * @param x the x
-     * @param y the y
-     */
-    public void exchange(Node x, Node y) {
-        x.value ^= y.value;
-        y.value ^= x.value;
-        x.value ^= y.value;
-    }
+//    /**
+//     * Decrease key.
+//     *
+//     * @param x the x
+//     * @param k the k
+//     */
+//    public void decreaseKey2(Node x, int k) {
+//        if (k >= x.value) {
+//            System.out.println("New key is not smaller than current key!");
+//            return;
+//        }
+//        x.value = k;
+//        Node y = x.parent;
+//        while (y != null && y.value > x.value) {
+//            exchange(x, y);
+//            x = y;
+//            y = x.parent;
+//        }
+//    }
+//
+//    /**
+//     * Exchange.
+//     *
+//     * @param x the x
+//     * @param y the y
+//     */
+//    public void exchange(Node x, Node y) {
+//        x.value ^= y.value;
+//        y.value ^= x.value;
+//        x.value ^= y.value;
+//    }
 
     /**
      * Deletes a node.
