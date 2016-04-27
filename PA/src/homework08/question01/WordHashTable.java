@@ -65,8 +65,8 @@ public class WordHashTable {
      * @param key   the key
      * @param value the value
      */
-    public void insert(String key, int value){
-        Word word = new Word(key,value);
+    public void insert(String key, int value, int position){
+        Word word = new Word(key,value, position);
         int hashCode = getHashCode(word.wordText);
         this.hashTable[hashCode].insertOrUpdate(word);
     }

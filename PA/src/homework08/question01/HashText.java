@@ -32,9 +32,9 @@ public class HashText {
      */
     public void test() {
         WordHashTable hashTable = new WordHashTable(11);
-        hashTable.insert("abc", 1);
-        hashTable.insert("def", 6);
-        hashTable.insert("Def", 55);
+        hashTable.insert("abc", 1, 0);
+        hashTable.insert("def", 6, 0);
+        hashTable.insert("Def", 55, 0);
         System.out.println(hashTable);
         try {
             System.out.println(hashTable.find("des"));
@@ -47,7 +47,7 @@ public class HashText {
         } catch (Exception e) {
             System.out.println(e.getMessage());
         }
-        hashTable.increase("aaa");
+//        hashTable.increase("aaa");
         System.out.println(hashTable);
         System.out.println(hashTable.listAllKeys());
     }
@@ -66,16 +66,16 @@ public class HashText {
                 stringList.addAll(Arrays.asList(sCurrentLine.replaceAll("[^a-zA-Z ]", "").split("\\s+")));
             }
             WordHashTable hashTable = new WordHashTable(getPrime(stringList.size()));
+            int positionCount = 1;
             for (String input : stringList) {
                 if (StringUtils.isNoneEmpty(input)) {
                     try {
                         int count = hashTable.find(input);
-                        hashTable.insert(input, ++count);
+                        hashTable.insert(input, ++count, ++positionCount);
                     } catch (Exception e) {
                         System.out.println("Creating new Word with key: " + input);
-                        hashTable.insert(input, 1);
+                        hashTable.insert(input, 1, ++positionCount);
                     }
-
                 }
             }
             String hashingOutput = hashTable.listAllKeys();

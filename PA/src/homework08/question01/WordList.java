@@ -86,6 +86,7 @@ public class WordList {
             while (currentWord != null) {
                 if (StringUtils.equals(currentWord.wordText, word.wordText)) {
                     currentWord.count = word.count;
+                    currentWord.position.addAll(word.position);
                     break;
                 }
                 currentWord = currentWord.next;
@@ -209,6 +210,8 @@ public class WordList {
                 sb.append(currentWord.wordText);
                 sb.append("; Value: ");
                 sb.append(currentWord.count);
+                sb.append("; Position: ");
+                sb.append(currentWord.position);
                 sb.append("\n");
                 currentWord = currentWord.next;
             }
