@@ -5,11 +5,44 @@ package homework12.question05;
  */
 public class FlowNetwork{
 
-    public int src, sink, numVertices;
+    /**
+     * The Src.
+     */
+    public int src, /**
+     * The Sink.
+     */
+    sink, /**
+     * The Num vertices.
+     */
+    numVertices;
+    /**
+     * The Capacities.
+     */
     //edge capacities, edge flows, vertex neighbors
-    public int[][] capacities, flows, neighbList;
-    public int[] excess, height;
-    /*
+    public int[][] capacities, /**
+     * The Flows.
+     */
+    flows, /**
+     * The Neighb list.
+     */
+    neighbList;
+    /**
+     * The Excess.
+     */
+    public int[] excess, /**
+     * The Height.
+     */
+    height;
+
+    /**
+     * Instantiates a new Flow network.
+     *
+     * @param n      the n
+     * @param source the source
+     * @param snk    the snk
+     * @param caps   the caps
+     */
+/*
     * @param n an int representing the total number of vertices in this FlowNetwork
     * @param source an int identifying the unique source id
     * @param snk an int identifying the unique sink id
