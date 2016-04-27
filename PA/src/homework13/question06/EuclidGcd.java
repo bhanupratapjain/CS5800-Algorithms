@@ -1,4 +1,4 @@
-package homework15.question06;
+package homework13.question06;
 
 /**
  * Created by Bhanu on 26/04/2016.
