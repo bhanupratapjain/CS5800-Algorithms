@@ -9,10 +9,18 @@ import java.util.ArrayList;
 public class Kruskal {
 
     public static void main(String[] args) {
-        final int NUM_TRIALS = 50;
-        final int GRAPH_SIZES[] = {10, 100, 150, 200};
-
-//        double[][] graph = buildGraph(10);
+        /*
+        *
+        *         10
+            0--------1
+            |  \     |
+           6|   5\   |15
+            |      \ |
+            2--------3
+        *
+        *
+        *
+        * */
         double[][] graph = {{0, 10, 5, 6}, {10, 0, 15, 0}, {5, 15, 0, 4}, {6, 0, 4, 0}};
         KruskalTree kt = new KruskalTree();
         double result = kt.kruskal(graph);
@@ -23,7 +31,6 @@ public class Kruskal {
 
 
     }
-
     // builds a graph with uniformly distributed random doubles in [0,1]
     private static double[][] buildGraph(int graphSize) {
         double[][] graph = new double[graphSize][graphSize];
