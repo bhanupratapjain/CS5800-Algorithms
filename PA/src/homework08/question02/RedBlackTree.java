@@ -376,7 +376,7 @@ public class RedBlackTree {
         if (z.left == nil || z.left == null) {
             x = z.right;
             transplant(z, z.right);
-        } else if (z.right.equals(nil)) {
+        } else if (z.right == nil || z.right == null) {
             x = z.left;
             transplant(z, z.left);
         } else {
@@ -423,20 +423,19 @@ public class RedBlackTree {
                 if (w.left.color == RedBlackNode.Color.BLACK && w.right.color == RedBlackNode.Color.BLACK) {
                     w.color = RedBlackNode.Color.RED;
                     x = x.parent;
-                } else {
-                    if (w.right.color == RedBlackNode.Color.BLACK) {
-                        w.left.color = RedBlackNode.Color.BLACK;
-                        w.color = RedBlackNode.Color.RED;
-                        rotateRight(w);
-                        w = x.parent.right;
-                    }
-
-                    w.color = x.parent.color;
-                    x.parent.color = RedBlackNode.Color.BLACK;
-                    w.right.color = RedBlackNode.Color.BLACK;
-                    rotateLeft(x.parent);
-                    x = root;
+                } else if (w.right.color == RedBlackNode.Color.BLACK) {
+                    w.left.color = RedBlackNode.Color.BLACK;
+                    w.color = RedBlackNode.Color.RED;
+                    rotateRight(w);
+                    w = x.parent.right;
                 }
+
+                w.color = x.parent.color;
+                x.parent.color = RedBlackNode.Color.BLACK;
+                w.right.color = RedBlackNode.Color.BLACK;
+                rotateLeft(x.parent);
+                x = root;
+
             } else {
                 w = x.parent.left;
                 if (w.color == RedBlackNode.Color.RED) {
@@ -448,20 +447,19 @@ public class RedBlackTree {
                 if (w.left.color == RedBlackNode.Color.BLACK && w.right.color == RedBlackNode.Color.BLACK) {
                     w.color = RedBlackNode.Color.RED;
                     x = x.parent;
-                } else {
-                    if (w.left.color == RedBlackNode.Color.BLACK) {
-                        w.right.color = RedBlackNode.Color.BLACK;
-                        w.color = RedBlackNode.Color.RED;
-                        rotateLeft(w);
-                        w = x.parent.left;
-                    }
-
-                    w.color = x.parent.color;
-                    x.parent.color = RedBlackNode.Color.BLACK;
-                    w.left.color = RedBlackNode.Color.BLACK;
-                    rotateLeft(x.parent);
-                    x = root;
+                } else if (w.left.color == RedBlackNode.Color.BLACK) {
+                    w.right.color = RedBlackNode.Color.BLACK;
+                    w.color = RedBlackNode.Color.RED;
+                    rotateLeft(w);
+                    w = x.parent.left;
                 }
+
+                w.color = x.parent.color;
+                x.parent.color = RedBlackNode.Color.BLACK;
+                w.left.color = RedBlackNode.Color.BLACK;
+                rotateLeft(x.parent);
+                x = root;
+
             }
         }
         x.color = RedBlackNode.Color.BLACK;

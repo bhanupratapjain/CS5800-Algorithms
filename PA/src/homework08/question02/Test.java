@@ -240,7 +240,8 @@ public class Test {
                     System.out.println("Please create RBT using insert.");
                 }
             } else if (StringUtils.startsWith(StringUtils.upperCase(userInput), "DELETE")) {
-                System.out.println("Executing DELETE OPERATION");
+                System.out.println("Executing DELETE OPERATION" +
+                        "");
                 if (rbt != null) {
                     String key = userInput.split("_")[1];
                     RedBlackNode node = rbt.search(Integer.parseInt(key));
