@@ -21,7 +21,20 @@ public class Kruskal {
         *
         *
         * */
-        double[][] graph = {{0, 10, 5, 6}, {10, 0, 15, 0}, {5, 15, 0, 4}, {6, 0, 4, 0}};
+//        double[][] graph = {{0, 10, 5, 6}, {10, 0, 15, 0}, {5, 15, 0, 4}, {6, 0, 4, 0}};
+        double[][] graph = {
+                {0, 0, 0, 0, 5, 0, 0, 3, 0, 0, 0},
+                {2, 0, 4, 0, 4, 4, 0, 0, 0, 0, 0},
+                {0, 4, 0, 1, 0, 6, 2, 0, 0, 0, 0},
+                {0, 0, 1, 0, 0, 0, 3, 0, 0, 0, 2},
+                {5, 4, 0, 0, 0, 3, 0, 4, 3, 0, 0},
+                {0, 4, 6, 0, 3, 0, 0, 0, 5, 7, 0},
+                {0, 0, 2, 3, 0, 0, 0, 0, 0, 4, 2},
+                {3, 0, 0, 0, 4, 0, 0, 0, 3, 0, 0},
+                {0, 0, 0, 0, 3, 5, 0, 3, 0, 6, 0},
+                {0, 0, 0, 0, 0, 7, 4, 0, 6, 0, 3},
+                {0, 0, 0, 2, 0, 0, 2, 0, 0, 3, 0},
+        };
         KruskalTree kt = new KruskalTree();
         double result = kt.kruskal(graph);
         System.out.println(kt.sum);
@@ -31,6 +44,7 @@ public class Kruskal {
 
 
     }
+
     // builds a graph with uniformly distributed random doubles in [0,1]
     private static double[][] buildGraph(int graphSize) {
         double[][] graph = new double[graphSize][graphSize];
@@ -55,9 +69,9 @@ public class Kruskal {
 
 // represents an element of the disjoint set directed forest
 class Set {
-    Set parent;
-    int id;
-    int rank;
+    public Set parent;
+    public int id;
+    public int rank;
 
     public Set(int i, int r) {
         parent = this;
@@ -71,6 +85,11 @@ class Set {
 
     public void incrementRank() {
         rank++;
+    }
+
+    @Override
+    public String toString() {
+        return "Parent::" + parent.id + " ID ::" + id + " Rank:: " + rank;
     }
 }
 
@@ -108,22 +127,31 @@ class KruskalTree {
         // build the initial disjoint sets for the vertices
         Set[] vertices = new Set[graph[0].length];
         for (int i = 0; i < graph[0].length; i++) {
-            vertices[i] = makeSet(i);
+            Set s = makeSet(i);
+            System.out.println(s);
+            vertices[i] = s;
         }
+
 
         // build initial edge collection
         ArrayList<Edge> edges = new ArrayList<Edge>();
         for (int i = 0; i < graph[0].length; i++) {
             for (int j = 0; j < i; j++) {
                 if (graph[i][j] > 0) {
-                    edges.add(new Edge(vertices[i], vertices[j], graph[i][j]));
+                    Edge edge = new Edge(vertices[i], vertices[j], graph[i][j]);
+                    edges.add(edge);
 
                 }
             }
         }
+
         System.out.println(edges);
         // sort edges by non-decreasing weight (using quicksort)
         ArrayList<Edge> mstEdges = qSort(edges);
+        for (Edge edge : mstEdges) {
+            System.out.println(edge);
+
+        }
 
 		/*
             for each edge, if vertices not in same disjoint set, union their
