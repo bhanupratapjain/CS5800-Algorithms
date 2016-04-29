@@ -370,9 +370,8 @@ public class RedBlackTree {
      */
     public void delete(RedBlackNode z) {
         RedBlackNode y = z;
-        RedBlackNode.Color yOriginalColor = y.color;
         RedBlackNode x;
-
+        RedBlackNode.Color yOriginalColor = y.color;
         if (z.left == nil || z.left == null) {
             x = z.right;
             transplant(z, z.right);
@@ -383,9 +382,8 @@ public class RedBlackTree {
             y = min(z.right);
             yOriginalColor = y.color;
             x = y.right;
-
             if (y.parent == z) {
-                x.parent = y;
+                x.parent = z;
             } else {
                 transplant(y, y.right);
                 y.right = z.right;
@@ -396,74 +394,63 @@ public class RedBlackTree {
             y.left.parent = y;
             y.color = z.color;
         }
-
         if (yOriginalColor == RedBlackNode.Color.BLACK) {
             deleteFixup(x);
         }
     }
 
-
-    /**
-     * Delete fixup.
-     *
-     * @param x the x
-     */
     private void deleteFixup(RedBlackNode x) {
         RedBlackNode w = null;
-
-        while (x != root && x.color == RedBlackNode.Color.BLACK) {
+        while ((x != nil || x != null) && x.color == RedBlackNode.Color.BLACK) {
             if (x == x.parent.left) {
                 w = x.parent.right;
                 if (w.color == RedBlackNode.Color.RED) {
                     w.color = RedBlackNode.Color.BLACK;
-                    x.parent.color = RedBlackNode.Color.RED;
+                    w.parent.color = RedBlackNode.Color.RED;
                     rotateLeft(x.parent);
                     w = x.parent.right;
                 }
                 if (w.left.color == RedBlackNode.Color.BLACK && w.right.color == RedBlackNode.Color.BLACK) {
                     w.color = RedBlackNode.Color.RED;
                     x = x.parent;
-                } else if (w.right.color == RedBlackNode.Color.BLACK) {
-                    w.left.color = RedBlackNode.Color.BLACK;
-                    w.color = RedBlackNode.Color.RED;
-                    rotateRight(w);
-                    w = x.parent.right;
+                } else {
+                    if (w.right.color == RedBlackNode.Color.BLACK) {
+                        w.left.color = RedBlackNode.Color.BLACK;
+                        w.color = RedBlackNode.Color.RED;
+                        rotateRight(w);
+                        w = x.parent.right;
+                    }
+                    w.color = x.parent.color;
+                    x.parent.color = RedBlackNode.Color.BLACK;
+                    w.right.color = RedBlackNode.Color.BLACK;
+                    rotateLeft(x.parent);
+                    x = root;
                 }
-
-                w.color = x.parent.color;
-                x.parent.color = RedBlackNode.Color.BLACK;
-                w.right.color = RedBlackNode.Color.BLACK;
-                rotateLeft(x.parent);
-                x = root;
-
             } else {
                 w = x.parent.left;
                 if (w.color == RedBlackNode.Color.RED) {
                     w.color = RedBlackNode.Color.BLACK;
-                    x.parent.color = RedBlackNode.Color.RED;
-                    rotateRight((x.parent));
+                    w.parent.color = RedBlackNode.Color.RED;
+                    rotateRight(x.parent);
                     w = x.parent.left;
                 }
-                if (w.left.color == RedBlackNode.Color.BLACK && w.right.color == RedBlackNode.Color.BLACK) {
+                if (w.right.color == RedBlackNode.Color.BLACK && w.left.color == RedBlackNode.Color.BLACK) {
                     w.color = RedBlackNode.Color.RED;
                     x = x.parent;
-                } else if (w.left.color == RedBlackNode.Color.BLACK) {
-                    w.right.color = RedBlackNode.Color.BLACK;
-                    w.color = RedBlackNode.Color.RED;
-                    rotateLeft(w);
-                    w = x.parent.left;
+                } else {
+                    if (w.left.color == RedBlackNode.Color.BLACK) {
+                        w.right.color = RedBlackNode.Color.BLACK;
+                        w.color = RedBlackNode.Color.RED;
+                        rotateLeft(w);
+                        w = x.parent.left;
+                    }
+                    w.color = x.parent.color;
+                    x.parent.color = RedBlackNode.Color.BLACK;
+                    w.left.color = RedBlackNode.Color.BLACK;
+                    rotateRight(x.parent);
+                    x = root;
                 }
-
-                w.color = x.parent.color;
-                x.parent.color = RedBlackNode.Color.BLACK;
-                w.left.color = RedBlackNode.Color.BLACK;
-                rotateLeft(x.parent);
-                x = root;
-
             }
         }
-        x.color = RedBlackNode.Color.BLACK;
     }
-
-
 }
